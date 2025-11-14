@@ -1,29 +1,35 @@
-import { Link } from 'react-router-dom';
-import { Button } from '../components/ui/button';
-import { Input } from '../components/ui/input';
-import { Label } from '../components/ui/label';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/card';
-import { BookOpen } from 'lucide-react';
-import { useState } from 'react';
+import { Link } from "react-router-dom";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import { Label } from "../components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "../components/ui/card";
+import { BookOpen } from "lucide-react";
+import { useState } from "react";
 
 export default function Register() {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    password: '',
-    confirmPassword: ''
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
   });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     // Handle registration logic here
-    console.log('Register:', formData);
+    console.log("Register:", formData);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({
       ...formData,
-      [e.target.id]: e.target.value
+      [e.target.id]: e.target.value,
     });
   };
 
@@ -35,7 +41,7 @@ export default function Register() {
           <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
             <BookOpen className="w-7 h-7 text-white" />
           </div>
-          <span className="text-gray-900 text-xl">IELTS Заавар</span>
+          <span className="text-gray-900 text-xl">Mon-Ielts</span>
         </Link>
 
         <Card className="border border-gray-200 shadow-lg">
@@ -109,7 +115,7 @@ export default function Register() {
 
             <div className="mt-6 text-center">
               <p className="text-gray-600 text-sm">
-                Аль хэдийн бүртгэлтэй юу?{' '}
+                Аль хэдийн бүртгэлтэй юу?{" "}
                 <Link to="/login" className="text-blue-600 hover:text-blue-700">
                   Нэвтрэх
                 </Link>

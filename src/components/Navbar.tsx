@@ -1,38 +1,38 @@
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Button } from './ui/button';
-import { BookOpen, Menu, X, LogOut, LayoutDashboard } from 'lucide-react';
-import { useState } from 'react';
-import { useAuth } from './AuthContext';
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Button } from "./ui/button";
+import { BookOpen, Menu, X, LogOut, LayoutDashboard } from "lucide-react";
+import { useState } from "react";
+import { useAuth } from "./AuthContext";
 
 export default function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isAuthenticated, user, logout } = useAuth();
-  
+
   const isActive = (path: string) => location.pathname === path;
 
   const handleLogout = () => {
     logout();
-    navigate('/');
+    navigate("/");
     setMobileMenuOpen(false);
   };
 
   const scrollToSection = (sectionId: string) => {
     // If not on home page, navigate first
-    if (location.pathname !== '/') {
-      navigate('/');
+    if (location.pathname !== "/") {
+      navigate("/");
       // Wait for navigation and then scroll
       setTimeout(() => {
         const element = document.getElementById(sectionId);
         if (element) {
-          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          element.scrollIntoView({ behavior: "smooth", block: "start" });
         }
       }, 100);
     } else {
       const element = document.getElementById(sectionId);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        element.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }
     setMobileMenuOpen(false);
@@ -47,7 +47,7 @@ export default function Navbar() {
             <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
               <BookOpen className="w-6 h-6 text-white" />
             </div>
-            <span className="text-gray-900">IELTS Заавар</span>
+            <span className="text-gray-900">Mon-Ielts</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -55,32 +55,37 @@ export default function Navbar() {
             <Link
               to="/"
               className={`${
-                isActive('/') ? 'text-blue-600' : 'text-gray-600 hover:text-gray-900'
+                isActive("/")
+                  ? "text-blue-600"
+                  : "text-gray-600 hover:text-gray-900"
               } transition-colors`}
             >
               Нүүр
             </Link>
-            <Link
-              to="/exercises"
-              className={`${
-                isActive('/exercises') ? 'text-blue-600' : 'text-gray-600 hover:text-gray-900'
-              } transition-colors`}
-            >
-              Дасгалууд
-            </Link>
+
             <button
-              onClick={() => scrollToSection('about')}
+              onClick={() => scrollToSection("about")}
               className="text-gray-600 hover:text-gray-900 transition-colors"
             >
               Бидний тухай
             </button>
             <button
-              onClick={() => scrollToSection('contact')}
+              onClick={() => scrollToSection("contact")}
               className="text-gray-600 hover:text-gray-900 transition-colors"
             >
               Холбоо барих
             </button>
           </div>
+          <Link
+            to="/exercises"
+            className={`${
+              isActive("/exercises")
+                ? "text-blue-600"
+                : "text-gray-600 hover:text-gray-900"
+            } transition-colors`}
+          >
+            Дасгалууд
+          </Link>
 
           {/* Auth Buttons */}
           <div className="hidden md:flex items-center gap-4">
@@ -140,7 +145,7 @@ export default function Navbar() {
               <Link
                 to="/"
                 className={`${
-                  isActive('/') ? 'text-blue-600' : 'text-gray-600'
+                  isActive("/") ? "text-blue-600" : "text-gray-600"
                 } px-4 py-2`}
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -149,20 +154,20 @@ export default function Navbar() {
               <Link
                 to="/exercises"
                 className={`${
-                  isActive('/exercises') ? 'text-blue-600' : 'text-gray-600'
+                  isActive("/exercises") ? "text-blue-600" : "text-gray-600"
                 } px-4 py-2`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Дасгалууд
               </Link>
               <button
-                onClick={() => scrollToSection('about')}
+                onClick={() => scrollToSection("about")}
                 className="text-gray-600 px-4 py-2 text-left"
               >
                 Бидний тухай
               </button>
               <button
-                onClick={() => scrollToSection('contact')}
+                onClick={() => scrollToSection("contact")}
                 className="text-gray-600 px-4 py-2 text-left"
               >
                 Холбоо барих
@@ -170,10 +175,11 @@ export default function Navbar() {
               <div className="flex flex-col gap-2 px-4 pt-4 border-t border-gray-200">
                 {isAuthenticated ? (
                   <>
-                    <div className="px-2 py-2 text-gray-900">
-                      {user?.name}
-                    </div>
-                    <Link to="/dashboard" onClick={() => setMobileMenuOpen(false)}>
+                    <div className="px-2 py-2 text-gray-900">{user?.name}</div>
+                    <Link
+                      to="/dashboard"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
                       <Button variant="outline" className="w-full">
                         <LayoutDashboard className="w-4 h-4 mr-2" />
                         Хяналтын самбар
@@ -195,7 +201,10 @@ export default function Navbar() {
                         Нэвтрэх
                       </Button>
                     </Link>
-                    <Link to="/register" onClick={() => setMobileMenuOpen(false)}>
+                    <Link
+                      to="/register"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
                       <Button className="w-full bg-blue-600 hover:bg-blue-700 text-white">
                         Бүртгүүлэх
                       </Button>

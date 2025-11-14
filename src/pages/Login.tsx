@@ -1,28 +1,34 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { Button } from '../components/ui/button';
-import { Input } from '../components/ui/input';
-import { Label } from '../components/ui/label';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '../components/ui/card';
-import { BookOpen, AlertCircle } from 'lucide-react';
-import { useState } from 'react';
-import { useAuth } from '../components/AuthContext';
+import { Link, useNavigate } from "react-router-dom";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import { Label } from "../components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "../components/ui/card";
+import { BookOpen, AlertCircle } from "lucide-react";
+import { useState } from "react";
+import { useAuth } from "../components/AuthContext";
 
 export default function Login() {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const { login } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setError('');
-    
+    setError("");
+
     const success = login(email, password);
     if (success) {
-      navigate('/dashboard');
+      navigate("/dashboard");
     } else {
-      setError('Имэйл хаяг эсвэл нууц үг буруу байна');
+      setError("Имэйл хаяг эсвэл нууц үг буруу байна");
     }
   };
 
@@ -34,7 +40,7 @@ export default function Login() {
           <div className="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg flex items-center justify-center">
             <BookOpen className="w-7 h-7 text-white" />
           </div>
-          <span className="text-gray-900 text-xl">IELTS Заавар</span>
+          <span className="text-gray-900 text-xl">Mon-Ielts</span>
         </Link>
 
         <Card className="border border-gray-200 shadow-lg">
@@ -52,11 +58,13 @@ export default function Login() {
                   <p className="text-red-700 text-sm">{error}</p>
                 </div>
               )}
-              
+
               <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
                 <p className="text-blue-700 text-sm">
-                  <strong>Туршилтын нэвтрэх:</strong><br />
-                  Имэйл: a@gmail.com<br />
+                  <strong>Туршилтын нэвтрэх:</strong>
+                  <br />
+                  Имэйл: a@gmail.com
+                  <br />
                   Нууц үг: a
                 </p>
               </div>
@@ -105,8 +113,11 @@ export default function Login() {
 
             <div className="mt-6 text-center">
               <p className="text-gray-600 text-sm">
-                Бүртгэлгүй юу?{' '}
-                <Link to="/register" className="text-blue-600 hover:text-blue-700">
+                Бүртгэлгүй юу?{" "}
+                <Link
+                  to="/register"
+                  className="text-blue-600 hover:text-blue-700"
+                >
                   Бүртгүүлэх
                 </Link>
               </p>
